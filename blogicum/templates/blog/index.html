@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Лента записей{% endblock %}   
+    {% block content %}
+    <main>
+      <div class="container py-5">
+        <h1>Лента записей</h1>                        
+        {% for sort_posts in catalog_post %}
+        <hr>
+        <article>
+          <ul>
+            <li>
+              Место: {{ sort_posts.location }}              
+            </li>
+            <li>
+              Дата: {{ sort_posts.date }}
+            </li>
+            <li>
+              Категория: <a href="category/{{ sort_posts.category }}">{{ sort_posts.category }}</a>
+            </li>
+          </ul>          
+          <p>
+            {{ sort_posts.text|truncatewords:10 }}
+          </p>
+          <a href="posts/{{ sort_posts.id }}">Читать полный текст</a>
+        </article>
+    {% endfor %} 
+      </div>
+    </main>
+{% endblock %}
